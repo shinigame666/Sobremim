@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://media.discordapp.net/attachments/1294860624144371803/1311437867368841336/image.png?ex=6748db30&is=674789b0&hm=39255784198a6cf0c2ae5fefbfbed9ece70c7eec30be96d7bfcba2d45cf65701&=&format=webp&quality=lossless&width=965&height=676') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .schedule-container {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            width: 250px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .schedule-container h2 {
+            margin-bottom: 15px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        .schedule-table th {
+            background-color: #444;
+        }
+
+        .schedule-table td {
+            background-color: #555;
+        }
+
+        .twitch-btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            background-color: #9146FF;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .twitch-btn:hover {
+            background-color: #772ce8;
+            transform: scale(1.1);
+        }
+
+        .profile-pic-container {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 1s ease, rotate 1s ease;
+        }
+
+        .profile-pic-container.active {
+            transform: translate(-50%, -200%) rotate(360deg);
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #ddd;
+            object-fit: cover;
+        }
+
+        .about-section {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .about-section.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .link-item img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .link-item:hover {
+            transform: scale(1.1);
+        }
+
+        .discord {
+            background-color: #5865F2;
+            color: white;
+        }
+
+        .discord:hover {
+            background-color: #4753C5;
+        }
+
+        .youtube {
+            background-color: #FF0000;
+            color: white;
+        }
+
+        .youtube:hover {
+            background-color: #CC0000;
+        }
+
+        .server {
+            background-color: #7289DA;
+            color: white;
+        }
+
+        .server:hover {
+            background-color: #5C6BC0;
+        }
+
+        /* Estilo para os créditos */
+        .credits {
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo transparente */
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="schedule-container">
+        <h2>Horários de Live</h2>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Horário</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Segunda</td>
+                    <td>20:00</td>
+                </tr>
+                <tr>
+                    <td>Quarta</td>
+                    <td>21:00</td>
+                </tr>
+                <tr>
+                    <td>Sexta</td>
+                    <td>19:00</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="https://www.twitch.tv/o_shini" target="_blank" class="twitch-btn">Assista na Twitch</a>
+    </div>
+
+    <div class="profile-pic-container" onclick="toggleAbout()">
+        <img src="sua-foto.jpg" alt="Minha Foto" class="profile-pic">
+    </div>
+
+    <div class="about-section" id="about-section">
+        <h1>Sobre Mim</h1>
+        <p>Me chamo Allef e gosto muito de jogar todos os tipos de jogos. Atualmente jogo Lethal Company, faço lives e estou aprendendo a criar sites. Meu próximo objetivo é aprender a criar jogos!</p>
+        <div class="links">
+            <a href="https://discord.com/users/653070337478623242" target="_blank" class="link-item discord">
+                <img src="https://i.pinimg.com/originals/a1/45/f0/a145f0bec7bd6e5dfd55161fdab8ab86.gif" alt="Discord">
+                Discord
+            </a>
+            <a href="https://youtube.com/@Allefjoga" target="_blank" class="link-item youtube">
+                <img src="https://yt3.googleusercontent.com/HvLVS9tcwkRBL3EZ_n3mpxkUKkZQJxN-9PKXZz-i5l5w_5ZSi_k3zOYfm29JkeZ1HspHSbvywA=s160-c-k-c0x00ffffff-no-rj" alt="YouTube">
+                YouTube
+            </a>
+            <a href="https://discord.gg/HcAPBnQR2C" target="_blank" class="link-item server">
+                <img src="https://th.bing.com/th/id/OIP.enqouAZ02GK5i6Y6OVQgFgHaEK?pid=ImgDet&rs=1" alt="Servidor do Discord">
+                Servidor do Discord
+            </a>
+        </div>
+    </div>
+
+    <!-- Créditos -->
+    <div class="credits">
+        Criado por O_shini
+    </div>
+
+    <script>
+        function toggleAbout() {
+            const profilePic = document.querySelector('.profile-pic-container');
+            const aboutSection = document.getElementById('about-section');
+            profilePic.classList.toggle('active');
+            aboutSection.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
